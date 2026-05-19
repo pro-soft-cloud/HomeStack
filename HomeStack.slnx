@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Api/">
+    <Project Path="Api/Api.csproj" />
+  </Folder>
+  <Folder Name="/Database/">
+    <Project Path="Postgres/Postgres.csproj" Id="d13b8907-c6f5-4d49-a809-893ba8626ef9" />
+    <Project Path="SqlServer/SqlServer.csproj" Id="266ec3df-bcf0-44ec-8ab2-b6e058ede843" />
+  </Folder>
+</Solution>

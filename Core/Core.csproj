@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>ProSoft.HomeStack.Core</AssemblyName>
+    <AssemblyTitle>ProSoft.HomeStack.Core</AssemblyTitle>
+    <RootNamespace>ProSoft.HomeStack.Core</RootNamespace>
+  </PropertyGroup>
+
+</Project>

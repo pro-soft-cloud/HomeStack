@@ -4,9 +4,9 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>ProSoft.HomeStack.Logic.Contracts</AssemblyName>
-    <AssemblyTitle>ProSoft.HomeStack.Logic.Contracts</AssemblyTitle>
-    <RootNamespace>ProSoft.HomeStack.Logic.Contracts</RootNamespace>
+    <AssemblyName>HomeStack.Logic.Contracts</AssemblyName>
+    <AssemblyTitle>HomeStack.Logic.Contracts</AssemblyTitle>
+    <RootNamespace>HomeStack.Logic.Contracts</RootNamespace>
   </PropertyGroup>
 
 </Project>

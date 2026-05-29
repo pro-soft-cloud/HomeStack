@@ -4,9 +4,9 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>ProSoft.HomeStack.Database.Postgres</AssemblyName>
-    <AssemblyTitle>ProSoft.HomeStack.Database.Postgres</AssemblyTitle>
-    <RootNamespace>ProSoft.HomeStack.Database.Postgres</RootNamespace>
+    <AssemblyName>HomeStack.Database.Postgres</AssemblyName>
+    <AssemblyTitle>HomeStack.Database.Postgres</AssemblyTitle>
+    <RootNamespace>HomeStack.Database.Postgres</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,8 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Database\Database.csproj" />
-    <ProjectReference Include="..\Database\HomeStack.Database.csproj" />
+    <ProjectReference Include="..\HomeStack.Database\HomeStack.Database.csproj" />
   </ItemGroup>
   
 </Project>

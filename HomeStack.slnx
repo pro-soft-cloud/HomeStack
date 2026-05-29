@@ -1,19 +1,19 @@
 <Solution>
   <Folder Name="/Api/">
-    <Project Path="Api/HomeStack.Api.csproj" />
+    <Project Path="HomeStack.Api/HomeStack.Api.csproj" />
   </Folder>
   <Folder Name="/Core/">
-    <Project Path="Core/HomeStack.Core.csproj" Id="9bf61a5f-2d0f-4397-a4e1-a06b5a822346" />
-    <Project Path="Default/HomeStack.Core.Default.csproj" Id="2567e94f-2c71-4be0-8637-86c7b59970c3" />
-    <Project Path="Infrastructure/HomeStack.Core.Infrastructure.csproj" Id="a771c3a0-9626-42b9-acf5-ef8dbc489d76" />
-    <Project Path="Models/HomeStack.Core.Models.csproj" Id="2666ca9c-d528-49f0-b762-dac7a0fa8f47" />
-    <Project Path="Options/HomeStack.Core.Options.csproj" Id="132a49f9-8e2a-4552-bb07-b1747165aeea" />
+    <Project Path="HomeStack.Core/HomeStack.Core.csproj" Id="9bf61a5f-2d0f-4397-a4e1-a06b5a822346" />
+    <Project Path="HomeStack.Core.Default/HomeStack.Core.Default.csproj" Id="2567e94f-2c71-4be0-8637-86c7b59970c3" />
+    <Project Path="HomeStack.Core.Infrastructure/HomeStack.Core.Infrastructure.csproj" Id="a771c3a0-9626-42b9-acf5-ef8dbc489d76" />
+    <Project Path="HomeStack.Core.Models/HomeStack.Core.Models.csproj" Id="2666ca9c-d528-49f0-b762-dac7a0fa8f47" />
+    <Project Path="HomeStack.Core.Options/HomeStack.Core.Options.csproj" Id="132a49f9-8e2a-4552-bb07-b1747165aeea" />
   </Folder>
   <Folder Name="/Database/">
-    <Project Path="Database.Infrastructure/HomeStack.Database.Infrastructure.csproj" Id="fd1605ac-0b70-4da1-96b4-989c16d7c705" />
-    <Project Path="Database/HomeStack.Database.csproj" Id="61745944-5aad-454c-9300-14f3e5a7f1f7" />
-    <Project Path="Postgres/HomeStack.Database.Postgres.csproj" Id="d13b8907-c6f5-4d49-a809-893ba8626ef9" />
-    <Project Path="SqlServer/HomeStack.Database.SqlServer.csproj" Id="266ec3df-bcf0-44ec-8ab2-b6e058ede843" />
+    <Project Path="HomeStack.Database/HomeStack.Database.csproj" Id="61745944-5aad-454c-9300-14f3e5a7f1f7" />
+    <Project Path="HomeStack.Database.Infrastructure/HomeStack.Database.Infrastructure.csproj" Id="fd1605ac-0b70-4da1-96b4-989c16d7c705" />
+    <Project Path="HomeStack.Database.Postgres/HomeStack.Database.Postgres.csproj" Id="d13b8907-c6f5-4d49-a809-893ba8626ef9" />
+    <Project Path="HomeStack.Database.SqlServer/HomeStack.Database.SqlServer.csproj" Id="266ec3df-bcf0-44ec-8ab2-b6e058ede843" />
   </Folder>
   <Folder Name="/Logic/">
     <Project Path="HomeStack.Logic.Contracts/HomeStack.Logic.Contracts.csproj" Id="44e6a6ca-f765-4be0-b6b7-c42dc40ca17e" />

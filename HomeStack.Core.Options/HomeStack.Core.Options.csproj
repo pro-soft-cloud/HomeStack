@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>HomeStack.Core.Options</AssemblyName>
+    <AssemblyTitle>HomeStack.Core.Options</AssemblyTitle>
+    <RootNamespace>HomeStack.Core.Options</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeStack.Core.Default\HomeStack.Core.Default.csproj" />
+  </ItemGroup>
+
+</Project>

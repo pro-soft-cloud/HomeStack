@@ -4,21 +4,21 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>ProSoft.HomeStack.Database.SqlServer</AssemblyName>
-    <AssemblyTitle>ProSoft.HomeStack.Database.SqlServer</AssemblyTitle>
-    <RootNamespace>ProSoft.HomeStack.Database.SqlServer</RootNamespace>
+    <AssemblyName>HomeStack.Database.Postgres</AssemblyName>
+    <AssemblyTitle>HomeStack.Database.Postgres</AssemblyTitle>
+    <RootNamespace>HomeStack.Database.Postgres</RootNamespace>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.8" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Database\Database.csproj" />
+    <ProjectReference Include="..\HomeStack.Database\HomeStack.Database.csproj" />
   </ItemGroup>
-
+  
 </Project>

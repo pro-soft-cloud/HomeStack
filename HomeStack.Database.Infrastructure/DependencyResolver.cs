@@ -3,15 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ProSoft.HomeStack.Core.Options;
-using ProSoft.HomeStack.Database;
 using ProSoft.HomeStack.Database.Postgres;
 using ProSoft.HomeStack.Database.SqlServer;
 
-namespace ProSoft.HomeStack.Core.Infrastructure;
+namespace ProSoft.HomeStack.Database.Infrastructure;
 
 public static class DependencyResolver
 {
-	public static IServiceCollection AddHomeStackLogic(this IServiceCollection services)
+	public static IServiceCollection AddHomeStackDatabase(this IServiceCollection services)
 	{
 		ArgumentNullException.ThrowIfNull(services);
 
@@ -41,7 +40,7 @@ public static class DependencyResolver
 		return services;
 	}
 
-	public static IHost UseHomeStackLogic(this IHost host, ILogger logger)
+	public static IHost UseHomeStackDatabase(this IHost host, ILogger logger)
 	{
 		ArgumentNullException.ThrowIfNull(host);
 		ArgumentNullException.ThrowIfNull(logger);

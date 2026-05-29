@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -6,9 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>86c7eb9f-1217-459c-b733-73f1f7a87e33</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <AssemblyName>ProSoft.HomeStack.Api</AssemblyName>
-    <AssemblyTitle>ProSoft.HomeStack.Api</AssemblyTitle>
-    <RootNamespace>ProSoft.HomeStack.Api</RootNamespace>
+    <AssemblyName>HomeStack.Api</AssemblyName>
+    <AssemblyTitle>HomeStack.Api</AssemblyTitle>
+    <RootNamespace>HomeStack.Api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\HomeStack.Core.Infrastructure\HomeStack.Core.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

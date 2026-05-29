@@ -3,7 +3,10 @@
     "https": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "HOMESTACK_DATABASE_ENGINE": "Postgres",
+        "HOMESTACK_DATABASE_CONNECTIONSTRING_POSTGRES": "Host=10.215.10.24;Port=5432;Database=homestack_dev;Username=postgres;Password=Geheim1234#;",
+        "HOMESTACK_DATABASE_CONNECTIONSTRING_MSSQLSERVER": "Server=10.215.10.17;Database=homestack_dev;User Id=localdev;Password=Geheim123#;Encrypt=True;TrustServerCertificate=True;Application Name=HomeStack;"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7031"
@@ -14,7 +17,10 @@
       "useSSL": false,
       "httpPort": 5080,
       "environmentVariables": {
-        "ASPNETCORE_HTTP_PORTS": "8080"
+        "ASPNETCORE_HTTP_PORTS": "8080",
+        "HOMESTACK_DATABASE_ENGINE": "MsSqlServer",
+        "HOMESTACK_DATABASE_CONNECTIONSTRING_POSTGRES": "Host=10.215.10.24;Port=5432;Database=homestack_dev;Username=postgres;Password=Geheim1234#;",
+        "HOMESTACK_DATABASE_CONNECTIONSTRING_MSSQLSERVER": "Server=10.215.10.17;Database=homestack_dev;User Id=localdev;Password=Geheim123#;Encrypt=True;TrustServerCertificate=True;Application Name=HomeStack;"
       },
       "publishAllPorts": true
     }

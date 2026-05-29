@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Default\Default.csproj" />
+    <ProjectReference Include="..\Default\HomeStack.Core.Default.csproj" />
   </ItemGroup>
 
 </Project>

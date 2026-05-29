@@ -15,10 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Database\Database.csproj" />
-    <ProjectReference Include="..\Options\Options.csproj" />
-    <ProjectReference Include="..\Postgres\Postgres.csproj" />
-    <ProjectReference Include="..\SqlServer\SqlServer.csproj" />
+    <ProjectReference Include="..\Database.Infrastructure\HomeStack.Database.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

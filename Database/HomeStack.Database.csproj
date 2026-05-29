@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj" />
-    <ProjectReference Include="..\Options\Options.csproj" />
+    <ProjectReference Include="..\Models\HomeStack.Core.Models.csproj" />
+    <ProjectReference Include="..\Options\HomeStack.Core.Options.csproj" />
   </ItemGroup>
 
 </Project>

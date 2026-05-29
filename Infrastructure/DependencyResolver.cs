@@ -1,11 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ProSoft.HomeStack.Core.Options;
-using ProSoft.HomeStack.Database;
-using ProSoft.HomeStack.Database.Postgres;
-using ProSoft.HomeStack.Database.SqlServer;
+using ProSoft.HomeStack.Database.Infrastructure;
 
 namespace ProSoft.HomeStack.Core.Infrastructure;
 
@@ -15,28 +11,7 @@ public static class DependencyResolver
 	{
 		ArgumentNullException.ThrowIfNull(services);
 
-		switch (HomeStackOptions.DatabaseEngine)
-		{
-			case DatabaseEngine.Postgres:
-				services.AddDbContext<PostgresDbContext>((sp, opts) => opts.UseNpgsql(HomeStackOptions.ConnectionString));
-				break;
-
-			case DatabaseEngine.MsSqlServer:
-			default:
-				services.AddDbContext<SqlServerDbContext>((sp, opts) => opts.UseSqlServer(HomeStackOptions.ConnectionString));
-				break;
-
-		}
-
-		services.AddScoped<HomeStackDbContext>(sp =>
-		{
-			return HomeStackOptions.DatabaseEngine switch
-			{
-				DatabaseEngine.Postgres => sp.GetRequiredService<PostgresDbContext>(),
-				DatabaseEngine.MsSqlServer => sp.GetRequiredService<SqlServerDbContext>(),
-				_ => throw new NotSupportedException($"Database engine '{HomeStackOptions.DatabaseEngine}' is not supported.")
-			};
-		});
+		services.AddHomeStackDatabase();
 
 		return services;
 	}
@@ -47,7 +22,8 @@ public static class DependencyResolver
 		ArgumentNullException.ThrowIfNull(logger);
 
 		logger.LogInformation("Configuring dependencies for: HomeStack.Logic.");
-		host.MigrateDatabase<HomeStackDbContext>(logger);
+
+		host.UseHomeStackDatabase(logger);
 
 		return host;
 	}

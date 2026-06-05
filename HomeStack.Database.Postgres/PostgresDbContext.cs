@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ProSoft.HomeStack.Database.Postgres;
+namespace HomeStack.Database.Postgres;
 
 public sealed class PostgresDbContext(DbContextOptions<PostgresDbContext> options)
 	: HomeStackDbContext(options)

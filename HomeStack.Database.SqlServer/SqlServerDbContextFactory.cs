@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using ProSoft.HomeStack.Core.Default;
+using HomeStack.Core.Default;
 
-namespace ProSoft.HomeStack.Database.SqlServer;
+namespace HomeStack.Database.SqlServer;
 
 internal sealed class SqlServerDbContextFactory : IDesignTimeDbContextFactory<SqlServerDbContext>
 {

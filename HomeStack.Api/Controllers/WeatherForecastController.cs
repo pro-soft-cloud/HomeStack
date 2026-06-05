@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProSoft.Result;
 
-namespace ProSoft.HomeStack.Api.Controllers;
+namespace HomeStack.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

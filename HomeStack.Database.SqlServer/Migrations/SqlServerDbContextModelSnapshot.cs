@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProSoft.HomeStack.Database.SqlServer;
+using HomeStack.Database.SqlServer;
 
 #nullable disable
 
-namespace ProSoft.HomeStack.Database.SqlServer.Migrations
+namespace HomeStack.Database.SqlServer.Migrations
 {
     [DbContext(typeof(SqlServerDbContext))]
     partial class SqlServerDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace ProSoft.HomeStack.Database.SqlServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ProSoft.HomeStack.Core.Models.HomeStackInstance", b =>
+            modelBuilder.Entity("HomeStack.Core.Models.HomeStackInstance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

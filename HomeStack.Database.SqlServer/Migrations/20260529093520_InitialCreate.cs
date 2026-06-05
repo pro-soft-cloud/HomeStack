@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ProSoft.HomeStack.Database.SqlServer.Migrations
+namespace HomeStack.Database.SqlServer.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

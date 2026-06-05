@@ -1,5 +1,5 @@
-using ProSoft.HomeStack.Api.ServiceConfigurations;
-using ProSoft.HomeStack.Core.Infrastructure;
+using HomeStack.Api.ServiceConfigurations;
+using HomeStack.Core.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,7 @@ builder
 
 // Add services to the container.
 builder.Services
-	.AddHomeStackLogic()
+	.AddHomeStackCore()
 	.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -32,7 +32,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-app.UseHomeStackLogic(logger);
+app.UseHomeStackCore(logger);
 
 logger.LogInformation("HomeStack.Api is ready for requests.");
 

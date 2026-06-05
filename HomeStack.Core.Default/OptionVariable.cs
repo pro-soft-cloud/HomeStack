@@ -1,4 +1,4 @@
-﻿namespace ProSoft.HomeStack.Core.Default;
+﻿namespace HomeStack.Core.Default;
 
 /// <summary>
 /// Class OptionVariable.

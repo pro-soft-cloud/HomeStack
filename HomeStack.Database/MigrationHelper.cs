@@ -1,12 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Text;
+﻿using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ProSoft.HomeStack.Core.Options;
+using HomeStack.Core.Options;
 
-namespace ProSoft.HomeStack.Database;
+namespace HomeStack.Database;
 
 public static class MigrationHelper
 {

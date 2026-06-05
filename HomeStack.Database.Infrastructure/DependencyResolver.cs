@@ -2,11 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ProSoft.HomeStack.Core.Options;
-using ProSoft.HomeStack.Database.Postgres;
-using ProSoft.HomeStack.Database.SqlServer;
+using HomeStack.Core.Options;
+using HomeStack.Database.Postgres;
+using HomeStack.Database.SqlServer;
 
-namespace ProSoft.HomeStack.Database.Infrastructure;
+namespace HomeStack.Database.Infrastructure;
 
 public static class DependencyResolver
 {
@@ -45,7 +45,7 @@ public static class DependencyResolver
 		ArgumentNullException.ThrowIfNull(host);
 		ArgumentNullException.ThrowIfNull(logger);
 
-		logger.LogInformation("Configuring dependencies for: HomeStack.Logic.");
+		logger.LogInformation("Configuring dependencies for: HomeStack.Database.");
 		host.MigrateDatabase<HomeStackDbContext>(logger);
 
 		return host;

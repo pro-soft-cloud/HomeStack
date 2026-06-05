@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using ProSoft.HomeStack.Database.Postgres;
+using HomeStack.Database.Postgres;
 
 #nullable disable
 
-namespace ProSoft.HomeStack.Database.Postgres.Migrations
+namespace HomeStack.Database.Postgres.Migrations
 {
     [DbContext(typeof(PostgresDbContext))]
     [Migration("20260529093442_InitialCreate")]
@@ -26,7 +26,7 @@ namespace ProSoft.HomeStack.Database.Postgres.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ProSoft.HomeStack.Core.Models.HomeStackInstance", b =>
+            modelBuilder.Entity("HomeStack.Core.Models.HomeStackInstance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -1,6 +1,6 @@
-﻿using ProSoft.HomeStack.Core.Default;
+﻿using HomeStack.Core.Default;
 
-namespace ProSoft.HomeStack.Core.Options;
+namespace HomeStack.Core.Options;
 
 public static class HomeStackOptions
 {

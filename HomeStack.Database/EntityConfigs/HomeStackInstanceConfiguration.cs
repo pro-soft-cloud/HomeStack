@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProSoft.HomeStack.Core.Models;
+using HomeStack.Core.Models;
 
-namespace ProSoft.HomeStack.Database.EntityConfigs;
+namespace HomeStack.Database.EntityConfigs;
 
 internal sealed class HomeStackInstanceConfiguration : IEntityTypeConfiguration<HomeStackInstance>
 {

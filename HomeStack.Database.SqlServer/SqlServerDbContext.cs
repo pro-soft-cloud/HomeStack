@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ProSoft.HomeStack.Database.SqlServer;
+namespace HomeStack.Database.SqlServer;
 
 public sealed class SqlServerDbContext(DbContextOptions<SqlServerDbContext> options)
 	: HomeStackDbContext(options)

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
-namespace ProSoft.HomeStack.Database.SqlServer;
+namespace HomeStack.Database.SqlServer;
 
 /// <summary>
 /// Class ServiceCollectionExtensions.

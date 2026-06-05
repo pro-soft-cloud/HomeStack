@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using ProSoft.HomeStack.Core.Default;
+using HomeStack.Core.Default;
 
-namespace ProSoft.HomeStack.Database.Postgres;
+namespace HomeStack.Database.Postgres;
 
 internal sealed class PostgresDbContextFactory : IDesignTimeDbContextFactory<PostgresDbContext>
 {

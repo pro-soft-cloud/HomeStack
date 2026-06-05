@@ -1,4 +1,4 @@
-﻿namespace ProSoft.HomeStack.Core.Models.Contracts;
+﻿namespace HomeStack.Core.Models.Contracts;
 
 /// <summary>
 /// Interface IBaseObject

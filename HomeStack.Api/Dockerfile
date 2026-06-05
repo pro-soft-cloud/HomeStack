@@ -31,4 +31,4 @@ COPY --from=publish /app/publish .
 RUN useradd --no-create-home --no-log-init --system appuser
 USER appuser
 
-ENTRYPOINT ["dotnet", "ProSoft.HomeStack.Api.dll"]
+ENTRYPOINT ["dotnet", "HomeStack.Api.dll"]

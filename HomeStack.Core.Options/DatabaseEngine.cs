@@ -1,4 +1,4 @@
-﻿namespace ProSoft.HomeStack.Core.Options;
+﻿namespace HomeStack.Core.Options;
 
 /// <summary>
 /// Enum DatabaseEngine.

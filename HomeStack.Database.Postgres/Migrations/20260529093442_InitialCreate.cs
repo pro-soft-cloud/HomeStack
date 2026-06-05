@@ -5,7 +5,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace ProSoft.HomeStack.Database.Postgres.Migrations
+namespace HomeStack.Database.Postgres.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

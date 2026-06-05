@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ProSoft.HomeStack.Database;
+namespace HomeStack.Database;
 
 public abstract class HomeStackDbContext(DbContextOptions options) : DbContext(options)
 {

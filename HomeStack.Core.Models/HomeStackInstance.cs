@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using ProSoft.HomeStack.Core.Models.Contracts;
+using HomeStack.Core.Models.Contracts;
 
-namespace ProSoft.HomeStack.Core.Models;
+namespace HomeStack.Core.Models;
 
 /// <summary>
 /// Class HomeStackInstance. This class cannot be inherited.

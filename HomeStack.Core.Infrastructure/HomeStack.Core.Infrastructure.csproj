@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeStack.Database.Infrastructure\HomeStack.Database.Infrastructure.csproj" />
+    <ProjectReference Include="..\HomeStack.Logic.Infrastructure\HomeStack.Logic.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-namespace ProSoft.HomeStack.Api;
+namespace HomeStack.Api;
 
 public class WeatherForecast
 {

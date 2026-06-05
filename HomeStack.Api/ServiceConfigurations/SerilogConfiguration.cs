@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace ProSoft.HomeStack.Api.ServiceConfigurations;
+namespace HomeStack.Api.ServiceConfigurations;
 
 /// <summary>
 /// Class SerilogConfiguration.

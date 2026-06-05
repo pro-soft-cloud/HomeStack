@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
-namespace ProSoft.HomeStack.Database.Postgres;
+namespace HomeStack.Database.Postgres;
 
 /// <summary>
 /// Class ServiceCollectionExtensions.

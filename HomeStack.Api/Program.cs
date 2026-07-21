@@ -1,3 +1,4 @@
+using HomeStack.Api.Converters;
 using HomeStack.Api.ServiceConfigurations;
 using HomeStack.Core.Infrastructure;
 
@@ -11,9 +12,9 @@ builder
 // Add services to the container.
 builder.Services
 	.AddHomeStackCore()
-	.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+	.AddControllers()
+	.AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new IPAddressJsonConverter()); })
+	;
 
 var app = builder.Build();
 var logger = app.Services
@@ -21,12 +22,6 @@ var logger = app.Services
 	.CreateLogger("HomeStack.Api");
 
 logger.LogInformation("Configuring dependencies for: HomeStack.");
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-	app.MapOpenApi();
-}
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

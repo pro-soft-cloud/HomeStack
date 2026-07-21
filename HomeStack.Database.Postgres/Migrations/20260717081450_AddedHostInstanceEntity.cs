@@ -8,13 +8,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HomeStack.Database.Postgres.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AddedHostInstanceEntity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "HomeStackInstance",
+                name: "HostInstances",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -31,15 +31,27 @@ namespace HomeStack.Database.Postgres.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HomeStackInstance", x => x.Id);
+                    table.PrimaryKey("PK_HostInstances", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HostInstances_DisplayName",
+                table: "HostInstances",
+                column: "DisplayName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HostInstances_SystemId",
+                table: "HostInstances",
+                column: "SystemId",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "HomeStackInstance");
+                name: "HostInstances");
         }
     }
 }

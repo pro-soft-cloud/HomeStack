@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Api/">
+    <Project Path="HomeStack.Api.Models/HomeStack.Api.Models.csproj" Id="2329c295-5ea7-464f-b363-d3e71c7694de" />
     <Project Path="HomeStack.Api/HomeStack.Api.csproj" />
   </Folder>
   <Folder Name="/Core/">
@@ -24,6 +25,7 @@
     <File Path=".dockerignore" />
     <File Path=".github/workflows/ci-build.yml" />
     <File Path=".gitignore" />
+    <File Path="CreateMigrations.ps1" />
     <File Path="nuget.config" />
     <File Path="README.md" />
   </Folder>

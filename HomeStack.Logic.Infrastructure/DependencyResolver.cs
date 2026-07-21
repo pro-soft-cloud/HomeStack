@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using HomeStack.Logic.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -9,6 +10,8 @@ public static class DependencyResolver
 	public static IServiceCollection AddHomeStackLogic(this IServiceCollection services)
 	{
 		ArgumentNullException.ThrowIfNull(services);
+
+		services.AddScoped<IHostInstanceManager, HostInstanceManager>();
 
 		return services;
 	}

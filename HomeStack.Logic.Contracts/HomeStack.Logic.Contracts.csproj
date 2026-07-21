@@ -9,4 +9,12 @@
     <RootNamespace>HomeStack.Logic.Contracts</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ProSoft.Result" Version="10.0.3-dev-260717115233" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeStack.Core.Models\HomeStack.Core.Models.csproj" />
+  </ItemGroup>
+
 </Project>

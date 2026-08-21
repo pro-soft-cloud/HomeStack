@@ -9,8 +9,4 @@
     <RootNamespace>HomeStack.Core</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Ardalis.Result" Version="10.1.0" />
-  </ItemGroup>
-
 </Project>

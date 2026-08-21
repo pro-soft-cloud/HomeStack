@@ -1,6 +1,7 @@
 using HomeStack.Api.Converters;
 using HomeStack.Api.ServiceConfigurations;
 using HomeStack.Core.Infrastructure;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +14,17 @@ builder
 // Add services to the container.
 builder.Services
 	.AddHomeStackCore()
-	.AddControllers()
-	.AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new IPAddressJsonConverter()); })
+	.ConfigureHttpJsonOptions(options =>
+	{
+		options.SerializerOptions.Converters.Add(new IPAddressJsonConverter());
+	})
+	.AddAuthorization()
 	;
+
+if (!OperatingSystem.IsWindows())
+{
+	builder.Services.AddOpenApi();
+}
 
 var app = builder.Build();
 var logger = app.Services
@@ -26,9 +35,15 @@ logger.LogInformation("Configuring dependencies for: HomeStack.");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.MapControllers();
+app.MapHomeStackEndpoints();
 
 app.UseHomeStackCore(logger);
+
+if (!OperatingSystem.IsWindows())
+{
+	app.MapOpenApi();
+	app.MapScalarApiReference();
+}
 
 logger.LogInformation("HomeStack.Api is ready for requests.");
 

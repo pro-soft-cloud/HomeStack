@@ -9,8 +9,4 @@
     <RootNamespace>HomeStack.Core.Models</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HomeStack.Core.Default\HomeStack.Core.Default.csproj" />
-  </ItemGroup>
-
 </Project>

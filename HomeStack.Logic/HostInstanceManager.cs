@@ -1,9 +1,9 @@
-﻿using HomeStack.Core.Models;
+﻿using Ardalis.Result;
+using HomeStack.Core.Models;
 using HomeStack.Database;
 using HomeStack.Logic.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ProSoft.Result;
 
 namespace HomeStack.Logic;
 
@@ -18,63 +18,119 @@ public sealed class HostInstanceManager : IHostInstanceManager
 		_dbContext = dbContext;
 	}
 
-	public async Task<List<HostInstance>> GetAllHostInstancesAsync(CancellationToken cancellationToken)
+	public async Task<PagedResult<List<HostInstance>>> GetAllHostInstancesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default)
 	{
-		var result = _dbContext.Set<HostInstance>().ToList();
+		if (pageNumber < 1 || pageSize < 1)
+		{
+			var validations = new List<ValidationError>
+			{
+				new() { Identifier = nameof(pageSize), ErrorMessage = "pageNumber and pageSize must be greater than 0." }
+			};
 
-		await Task.CompletedTask;
-		
-		return result;
+			return Result<List<HostInstance>>.Invalid(validations).ToPagedResult(new PagedInfo(pageNumber, pageSize, 0, 0));
+		}
+
+		try
+		{
+			var totalRecords = await _dbContext.Set<HostInstance>().LongCountAsync(cancellationToken);
+
+			var result = await _dbContext.Set<HostInstance>()
+				.OrderBy(o => o.DisplayName)
+				.Skip((pageNumber - 1) * pageSize)
+				.Take(pageSize)
+				.ToListAsync(cancellationToken);
+
+			var totalPages = totalRecords == 0
+				? 0
+				: (totalRecords + pageSize - 1) / pageSize;
+
+			var pagedInfo = new PagedInfo(pageNumber, pageSize, totalPages, totalRecords);
+
+			return Result<List<HostInstance>>.Success(result).ToPagedResult(pagedInfo);
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error loading HostInstances (Page {PageNumber}, Size {PageSize})", pageNumber, pageSize);
+
+			return Result<List<HostInstance>>.CriticalError($"Error loading HostInstances (Page {pageNumber}, Size {pageSize})").ToPagedResult(new PagedInfo(pageNumber, pageSize, 0, 0));
+		}
 	}
 
-	public Task<HostInstance?> GetBySystemIdAsync(Guid systemId, CancellationToken cancellationToken)
+	public async Task<Result<HostInstance?>> GetBySystemIdAsync(Guid systemId, CancellationToken cancellationToken = default)
 	{
-		return _dbContext.Set<HostInstance>().FirstOrDefaultAsync(x => x.SystemId == systemId, cancellationToken);
+		try
+		{
+			var result = await _dbContext.Set<HostInstance>().FirstOrDefaultAsync(x => x.SystemId == systemId, cancellationToken);
+
+			return result == null
+				? Result<HostInstance?>.NotFound($"HostInstance with SystemId '{systemId}' not found.")
+				: Result<HostInstance?>.Success(result);
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error loading HostInstance with SystemId {SystemId}", systemId);
+
+			return Result<HostInstance?>.CriticalError($"Error loading HostInstance with SystemId {systemId}");
+		}
 	}
 
-	public async Task<HostInstance> AddAsync(HostInstance item, CancellationToken cancellationToken)
+	public async Task<Result<HostInstance>> AddAsync(HostInstance item, CancellationToken cancellationToken = default)
 	{
 		var result = await AddRangeAsync([item], cancellationToken);
 
-		return result.First();
+		return result.IsSuccess
+			? Result<HostInstance>.Created(result.Value.First())
+			: Result<HostInstance>.CriticalError([.. result.Errors]);
 	}
 
-	public async Task<List<HostInstance>> AddRangeAsync(List<HostInstance> listItems, CancellationToken cancellationToken)
+	public async Task<Result<List<HostInstance>>> AddRangeAsync(List<HostInstance> listItems, CancellationToken cancellationToken = default)
 	{
-		await _dbContext.Set<HostInstance>().AddRangeAsync(listItems, cancellationToken);
-		await _dbContext.SaveChangesAsync(cancellationToken);
-
-		return listItems;
-	}
-
-	public async Task<Result<HostInstance>> UpdateAsync(HostInstance item, CancellationToken cancellationToken)
-	{
-		var dbItem = await GetBySystemIdAsync(item.SystemId, cancellationToken);
-
-		if (dbItem == null)
+		try
 		{
-			var result = new Result<HostInstance>
-			(
-				dbItem,
-				ResultStatus.Failure,
-				[
-					new Message(MessageCategory.Technical, MessageType.Error, $"HostInstance with SystemId '{item.SystemId}' not found.")
-				]
-			);
-			return result;
+			await _dbContext.Set<HostInstance>().AddRangeAsync(listItems, cancellationToken);
+			await _dbContext.SaveChangesAsync(cancellationToken);
+
+			return Result<List<HostInstance>>.Success(listItems);
 		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error adding one or more HostInstances");
 
-		dbItem.IP = item.IP;
-		dbItem.DisplayName = item.DisplayName;
-		dbItem.ValidFrom = item.ValidFrom;
-		dbItem.ValidTo = item.ValidTo;
-		dbItem.LastUpdatedAt = item.LastUpdatedAt;
-		dbItem.LastUpdatedBy = item.LastUpdatedBy;
+			return Result<List<HostInstance>>.CriticalError("Error adding one or more HostInstances.");
+		}
+	}
 
-		var updatedItem = _dbContext.Set<HostInstance>().Update(dbItem);
+	public async Task<Result<HostInstance>> UpdateAsync(HostInstance item, CancellationToken cancellationToken = default)
+	{
+		try
+		{
+			var dbItem = await GetBySystemIdAsync(item.SystemId, cancellationToken);
 
-		await _dbContext.SaveChangesAsync(cancellationToken);
+			if (dbItem is not { IsSuccess: true, Value: { } existingHostInstance })
+			{
+				return dbItem.IsNotFound()
+					? Result<HostInstance>.NotFound($"HostInstance with SystemId '{item.SystemId}' not found.")
+					: Result<HostInstance>.CriticalError([.. dbItem.Errors]);
+			}
 
-		return new Result<HostInstance>(updatedItem.Entity, ResultStatus.Success);
+			existingHostInstance.IP = item.IP;
+			existingHostInstance.DisplayName = item.DisplayName;
+			existingHostInstance.ValidFrom = item.ValidFrom;
+			existingHostInstance.ValidTo = item.ValidTo;
+			existingHostInstance.LastUpdatedAt = item.LastUpdatedAt;
+			existingHostInstance.LastUpdatedBy = item.LastUpdatedBy;
+
+			var updatedItem = _dbContext.Set<HostInstance>().Update(existingHostInstance);
+
+			await _dbContext.SaveChangesAsync(cancellationToken);
+
+			return Result<HostInstance>.Success(updatedItem.Entity);
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error updating HostInstance with SystemId {SystemId}", item.SystemId);
+
+			return Result<HostInstance>.CriticalError($"Error updating HostInstance with SystemId {item.SystemId}");
+		}
 	}
 }

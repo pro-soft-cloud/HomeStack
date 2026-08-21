@@ -2,8 +2,7 @@
 
 namespace HomeStack.Database.SqlServer;
 
-public sealed class SqlServerDbContext(DbContextOptions<SqlServerDbContext> options)
-	: HomeStackDbContext(options)
+public sealed class SqlServerDbContext(DbContextOptions<SqlServerDbContext> options) : HomeStackDbContext(options)
 {
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

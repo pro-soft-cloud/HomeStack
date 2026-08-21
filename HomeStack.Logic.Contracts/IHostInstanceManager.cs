@@ -1,17 +1,17 @@
-﻿using HomeStack.Core.Models;
-using ProSoft.Result;
+﻿using Ardalis.Result;
+using HomeStack.Core.Models;
 
 namespace HomeStack.Logic.Contracts;
 
 public interface IHostInstanceManager
 {
-	Task<List<HostInstance>> GetAllHostInstancesAsync(CancellationToken cancellationToken);
+	Task<PagedResult<List<HostInstance>>> GetAllHostInstancesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default);
 
-	Task<HostInstance?> GetBySystemIdAsync(Guid systemId, CancellationToken cancellationToken);
+	Task<Result<HostInstance?>> GetBySystemIdAsync(Guid systemId, CancellationToken cancellationToken = default);
 
-	Task<HostInstance> AddAsync(HostInstance item, CancellationToken cancellationToken);
+	Task<Result<HostInstance>> AddAsync(HostInstance item, CancellationToken cancellationToken = default);
 
-	Task<List<HostInstance>> AddRangeAsync(List<HostInstance> listItems, CancellationToken cancellationToken);
+	Task<Result<List<HostInstance>>> AddRangeAsync(List<HostInstance> listItems, CancellationToken cancellationToken = default);
 
-	Task<Result<HostInstance>> UpdateAsync(HostInstance item, CancellationToken cancellationToken);
+	Task<Result<HostInstance>> UpdateAsync(HostInstance item, CancellationToken cancellationToken = default);
 }

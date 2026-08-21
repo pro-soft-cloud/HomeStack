@@ -20,5 +20,5 @@ public sealed class HostInstance : BaseObject
 	/// Gets or sets the ip.
 	/// </summary>
 	/// <value>The ip.</value>
-	public IPAddress IP { get; set; }
+	public required IPAddress IP { get; set; }
 }

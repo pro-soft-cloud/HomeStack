@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ProSoft.Result" Version="10.0.3-dev-260717115233" />
+    <PackageReference Include="Ardalis.Result" Version="10.1.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Configure WebApi
 builder
 	.ConfigureSerilog()
+	.ConfigureOpenTelemetry()
 	;
 
 // Add services to the container.

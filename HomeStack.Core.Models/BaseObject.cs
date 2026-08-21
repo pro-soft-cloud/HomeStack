@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace HomeStack.Core.Models;
+﻿namespace HomeStack.Core.Models;
 
 /// <summary>
 /// Class BaseObject.
@@ -35,7 +33,7 @@ public abstract class BaseObject
 	/// Gets or sets the created by.
 	/// </summary>
 	/// <value>The created by.</value>
-	public string CreatedBy { get; set; }
+	public string CreatedBy { get; set; } = "system";
 
 	/// <summary>
 	/// Gets or sets the last updated at.
@@ -47,5 +45,5 @@ public abstract class BaseObject
 	/// Gets or sets the last updated by.
 	/// </summary>
 	/// <value>The last updated by.</value>
-	public string LastUpdatedBy { get; set; }
+	public string LastUpdatedBy { get; set; } = string.Empty;
 }

@@ -28,3 +28,10 @@ README.md
 !.git/config
 !.git/packed-refs
 !.git/refs/heads/**
+
+**/*.pdb
+**/*.Development.json
+
+# Unit test projects should never end up in the Docker build context/image
+**/*.Tests/**
+**/*.Tests.csproj

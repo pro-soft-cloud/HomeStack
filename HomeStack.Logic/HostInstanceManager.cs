@@ -120,11 +120,11 @@ public sealed class HostInstanceManager : IHostInstanceManager
 			existingHostInstance.LastUpdatedAt = item.LastUpdatedAt;
 			existingHostInstance.LastUpdatedBy = item.LastUpdatedBy;
 
-			var updatedItem = _dbContext.Set<HostInstance>().Update(existingHostInstance);
+			_dbContext.Set<HostInstance>().Update(existingHostInstance);
 
 			await _dbContext.SaveChangesAsync(cancellationToken);
 
-			return Result<HostInstance>.Success(updatedItem.Entity);
+			return Result<HostInstance>.Success(existingHostInstance);
 		}
 		catch (Exception ex)
 		{

@@ -19,6 +19,7 @@
   <Folder Name="/Logic/">
     <Project Path="HomeStack.Logic.Contracts/HomeStack.Logic.Contracts.csproj" Id="44e6a6ca-f765-4be0-b6b7-c42dc40ca17e" />
     <Project Path="HomeStack.Logic.Infrastructure/HomeStack.Logic.Infrastructure.csproj" Id="005822f7-81c2-45e7-948b-fdfcee2686b2" />
+    <Project Path="HomeStack.Logic.Tests/HomeStack.Logic.Tests.csproj" />
     <Project Path="HomeStack.Logic/HomeStack.Logic.csproj" Id="1f58b6f4-f396-4442-926d-b1cdec9362db" />
   </Folder>
   <Folder Name="/Solution Items/">
@@ -26,6 +27,7 @@
     <File Path=".github/workflows/ci-build.yml" />
     <File Path=".gitignore" />
     <File Path="CreateMigrations.ps1" />
+    <File Path="Directory.Build.props" />
     <File Path="nuget.config" />
     <File Path="README.md" />
   </Folder>

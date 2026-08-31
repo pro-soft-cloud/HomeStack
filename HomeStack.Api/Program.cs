@@ -21,10 +21,7 @@ builder.Services
 	.AddAuthorization()
 	;
 
-if (!OperatingSystem.IsWindows())
-{
-	builder.Services.AddOpenApi();
-}
+builder.Services.AddOpenApi();
 
 var app = builder.Build();
 var logger = app.Services
@@ -39,11 +36,8 @@ app.MapHomeStackEndpoints();
 
 app.UseHomeStackCore(logger);
 
-if (!OperatingSystem.IsWindows())
-{
-	app.MapOpenApi();
-	app.MapScalarApiReference();
-}
+app.MapOpenApi();
+app.MapScalarApiReference();
 
 logger.LogInformation("HomeStack.Api is ready for requests.");
 

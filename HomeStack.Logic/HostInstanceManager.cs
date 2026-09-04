@@ -133,4 +133,27 @@ public sealed class HostInstanceManager : IHostInstanceManager
 			return Result<HostInstance>.CriticalError($"Error updating HostInstance with SystemId {item.SystemId}");
 		}
 	}
+
+	public async Task<Result> DeleteAsync(Guid systemId, CancellationToken cancellationToken = default)
+	{
+		try
+		{
+			var dbItem = await GetBySystemIdAsync(systemId, cancellationToken);
+
+			if (dbItem is not { Status: ResultStatus.Ok, Value: not null })
+				return Result.NotFound($"HostInstance with SystemId '{systemId}' not found.");
+
+			_dbContext.Set<HostInstance>().Remove(dbItem.Value);
+
+			await _dbContext.SaveChangesAsync(cancellationToken);
+
+			return Result.Success();
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error deleting HostInstance with SystemId {SystemId}", systemId);
+			
+			return Result.Error($"Error deleting HostInstance with SystemId {systemId}");
+		}
+	}
 }

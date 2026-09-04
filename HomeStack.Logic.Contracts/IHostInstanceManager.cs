@@ -14,4 +14,6 @@ public interface IHostInstanceManager
 	Task<Result<List<HostInstance>>> AddRangeAsync(List<HostInstance> listItems, CancellationToken cancellationToken = default);
 
 	Task<Result<HostInstance>> UpdateAsync(HostInstance item, CancellationToken cancellationToken = default);
+
+	Task<Result> DeleteAsync(Guid systemId, CancellationToken cancellationToken = default);
 }

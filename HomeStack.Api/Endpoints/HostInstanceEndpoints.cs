@@ -21,6 +21,7 @@ public static class HostInstanceEndpoints
 		group.MapGet("/{systemId:guid}", GetBySystemIdAsync).WithName("GetBySystemId");
 		group.MapPut("/{systemId:guid}", UpdateAsync);
 		group.MapPost("", CreateAsync);
+		group.MapDelete("/{systemId:guid}", DeleteAsync);
 
 		return app;
 	}
@@ -111,5 +112,15 @@ public static class HostInstanceEndpoints
 		var location = linkGenerator.GetPathByName(httpContext, "GetBySystemId", new { systemId = apiModel.SystemId });
 
 		return TypedResults.Created(location, apiModel);
+	}
+
+	private static async Task<IResult> DeleteAsync(
+		Guid systemId,
+		IHostInstanceManager hostInstanceManager,
+		CancellationToken cancellationToken = default)
+	{
+		var result = await hostInstanceManager.DeleteAsync(systemId, cancellationToken);
+		
+		return result.ToMinimalApiResult();
 	}
 }

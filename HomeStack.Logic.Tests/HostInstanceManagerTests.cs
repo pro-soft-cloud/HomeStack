@@ -35,7 +35,7 @@ public class HostInstanceManagerTests
 
 	private void SetupHostInstances(List<HostInstance> hostInstances)
 	{
-		var mockSet = hostInstances.AsQueryable().BuildMockDbSet();
+		var mockSet = hostInstances.BuildMockDbSet();
 
 		_dbContextMock
 			.Setup(x => x.Set<HostInstance>())
@@ -47,7 +47,7 @@ public class HostInstanceManagerTests
 	{
 		var sut = CreateSut();
 
-		var result = await sut.GetAllHostInstancesAsync(pageNumber: 0, pageSize: 10);
+		var result = await sut.GetAllHostInstancesAsync(0, 10, CancellationToken.None);
 
 		Assert.True(result.Status == ResultStatus.Invalid);
 	}
@@ -57,7 +57,7 @@ public class HostInstanceManagerTests
 	{
 		var sut = CreateSut();
 
-		var result = await sut.GetAllHostInstancesAsync(pageNumber: 1, pageSize: 0);
+		var result = await sut.GetAllHostInstancesAsync(1, 0, CancellationToken.None);
 
 		Assert.True(result.Status == ResultStatus.Invalid);
 	}
@@ -76,7 +76,7 @@ public class HostInstanceManagerTests
 
 		var sut = CreateSut();
 
-		var result = await sut.GetAllHostInstancesAsync(pageNumber: 1, pageSize: 2);
+		var result = await sut.GetAllHostInstancesAsync(1, 2, CancellationToken.None);
 
 		Assert.True(result.IsSuccess);
 		Assert.Equal(2, result.Value.Count);
@@ -95,7 +95,7 @@ public class HostInstanceManagerTests
 
 		var sut = CreateSut();
 
-		var result = await sut.GetAllHostInstancesAsync(pageNumber: 1, pageSize: 10);
+		var result = await sut.GetAllHostInstancesAsync(1, 10, CancellationToken.None);
 
 		Assert.Equal(ResultStatus.CriticalError, result.Status);
 	}
@@ -110,7 +110,7 @@ public class HostInstanceManagerTests
 
 		var sut = CreateSut();
 
-		var result = await sut.GetBySystemIdAsync(systemId);
+		var result = await sut.GetBySystemIdAsync(systemId, CancellationToken.None);
 
 		Assert.True(result.IsSuccess);
 		Assert.Equal(systemId, result.Value!.SystemId);
@@ -123,7 +123,7 @@ public class HostInstanceManagerTests
 
 		var sut = CreateSut();
 
-		var result = await sut.GetBySystemIdAsync(Guid.NewGuid());
+		var result = await sut.GetBySystemIdAsync(Guid.NewGuid(), CancellationToken.None);
 
 		Assert.True(result.IsNotFound());
 	}
@@ -137,7 +137,7 @@ public class HostInstanceManagerTests
 
 		var sut = CreateSut();
 
-		var result = await sut.GetBySystemIdAsync(Guid.NewGuid());
+		var result = await sut.GetBySystemIdAsync(Guid.NewGuid(), CancellationToken.None);
 
 		Assert.Equal(ResultStatus.CriticalError, result.Status);
 	}
@@ -145,7 +145,7 @@ public class HostInstanceManagerTests
 	[Fact]
 	public async Task AddAsync_WithValidItem_ReturnsCreated()
 	{
-		var mockSet = new List<HostInstance>().AsQueryable().BuildMockDbSet();
+		var mockSet = new List<HostInstance>().BuildMockDbSet();
 
 		_dbContextMock
 			.Setup(x => x.Set<HostInstance>())
@@ -158,7 +158,7 @@ public class HostInstanceManagerTests
 		var sut = CreateSut();
 		var item = CreateHostInstance();
 
-		var result = await sut.AddAsync(item);
+		var result = await sut.AddAsync(item, CancellationToken.None);
 
 		Assert.Equal(ResultStatus.Created, result.Status);
 		mockSet.Verify(x => x.AddRangeAsync(It.Is<IEnumerable<HostInstance>>(l => l.Single() == item), It.IsAny<CancellationToken>()), Times.Once);
@@ -167,7 +167,7 @@ public class HostInstanceManagerTests
 	[Fact]
 	public async Task AddAsync_WhenExceptionThrown_ReturnsCriticalError()
 	{
-		var mockSet = new List<HostInstance>().AsQueryable().BuildMockDbSet();
+		var mockSet = new List<HostInstance>().BuildMockDbSet();
 
 		_dbContextMock
 			.Setup(x => x.Set<HostInstance>())
@@ -179,7 +179,7 @@ public class HostInstanceManagerTests
 
 		var sut = CreateSut();
 
-		var result = await sut.AddAsync(CreateHostInstance());
+		var result = await sut.AddAsync(CreateHostInstance(), CancellationToken.None);
 
 		Assert.Equal(ResultStatus.CriticalError, result.Status);
 	}
@@ -200,7 +200,7 @@ public class HostInstanceManagerTests
 		var sut = CreateSut();
 		var updateItem = CreateHostInstance(systemId, "New-Name");
 
-		var result = await sut.UpdateAsync(updateItem);
+		var result = await sut.UpdateAsync(updateItem, CancellationToken.None);
 
 		Assert.True(result.IsSuccess);
 		Assert.Equal("New-Name", result.Value.DisplayName);
@@ -213,7 +213,7 @@ public class HostInstanceManagerTests
 
 		var sut = CreateSut();
 
-		var result = await sut.UpdateAsync(CreateHostInstance());
+		var result = await sut.UpdateAsync(CreateHostInstance(), CancellationToken.None);
 
 		Assert.True(result.IsNotFound());
 	}
@@ -231,7 +231,7 @@ public class HostInstanceManagerTests
 
 		var sut = CreateSut();
 
-		var result = await sut.UpdateAsync(CreateHostInstance(systemId));
+		var result = await sut.UpdateAsync(CreateHostInstance(systemId), CancellationToken.None);
 
 		Assert.Equal(ResultStatus.CriticalError, result.Status);
 	}

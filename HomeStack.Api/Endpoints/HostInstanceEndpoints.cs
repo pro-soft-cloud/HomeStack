@@ -76,7 +76,7 @@ public static class HostInstanceEndpoints
 				ErrorMessage = "Route systemId and body SystemId must match."
 			};
 
-			return Result<HostInstanceModel>.Invalid([validationError]).ToMinimalApiResult();
+			return Result<HostInstanceModel>.Invalid(validationError).ToMinimalApiResult();
 		}
 
 		var coreModel = request.ToCoreModel();

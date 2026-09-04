@@ -8,7 +8,6 @@ public sealed class SqlServerDbContext(DbContextOptions<SqlServerDbContext> opti
 	{
 		base.OnModelCreating(modelBuilder);
 
-		// SqlServer-spezifische Overrides, z.B.:
-		// modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
+		// Just MsSqlServer specific Overrides
 	}
 }

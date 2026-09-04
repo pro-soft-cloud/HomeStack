@@ -49,7 +49,7 @@ public class HostInstanceManagerTests
 
 		var result = await sut.GetAllHostInstancesAsync(0, 10, CancellationToken.None);
 
-		Assert.True(result.Status == ResultStatus.Invalid);
+		Assert.Equal(ResultStatus.Invalid, result.Status);
 	}
 
 	[Fact]
@@ -59,7 +59,7 @@ public class HostInstanceManagerTests
 
 		var result = await sut.GetAllHostInstancesAsync(1, 0, CancellationToken.None);
 
-		Assert.True(result.Status == ResultStatus.Invalid);
+		Assert.Equal(ResultStatus.Invalid, result.Status);
 	}
 
 	[Fact]

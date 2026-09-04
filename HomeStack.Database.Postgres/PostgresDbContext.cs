@@ -6,9 +6,8 @@ public sealed class PostgresDbContext(DbContextOptions<PostgresDbContext> option
 {
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		base.OnModelCreating(modelBuilder); // shared config aus Database-Projekt
+		base.OnModelCreating(modelBuilder);
 
-		// Hier nur Postgres-spezifische Overrides, z.B.:
-		// modelBuilder.HasPostgresExtension("uuid-ossp");
+		// Just Postgres specific Overrides
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using HomeStack.Core.Default;
+using HomeStack.Core.Exceptions;
 
 namespace HomeStack.Core.Options;
 
@@ -27,10 +28,9 @@ public static class HomeStackOptions
 
 		var databaseConnectionString = Environment.GetEnvironmentVariable(databaseConnectionStringEnvName);
 
-		if (!string.IsNullOrWhiteSpace(databaseConnectionString))
-			return databaseConnectionString;
-
-		throw new Exception($"Database connection string environment variable '{databaseConnectionStringEnvName}' not found or empty.");
+		return !string.IsNullOrWhiteSpace(databaseConnectionString) 
+			? databaseConnectionString 
+			: throw new HomeStackException($"Database connection string environment variable '{databaseConnectionStringEnvName}' not found or empty.");
 	}
 
 	private static DatabaseEngine DetermineDatabaseEngine()

@@ -20,11 +20,10 @@ public static class DependencyResolver
 				services.AddDbContext<PostgresDbContext>((sp, opts) => opts.UseNpgsql(HomeStackOptions.ConnectionString));
 				break;
 
-			case DatabaseEngine.MsSqlServer:
+			// MsSqlServer is default
 			default:
 				services.AddDbContext<SqlServerDbContext>((sp, opts) => opts.UseSqlServer(HomeStackOptions.ConnectionString));
 				break;
-
 		}
 
 		services.AddScoped<HomeStackDbContext>(sp =>

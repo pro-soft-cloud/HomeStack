@@ -79,7 +79,7 @@ public sealed class HostInstanceManager : IHostInstanceManager
 		var result = await AddRangeAsync([item], cancellationToken);
 
 		return result.IsSuccess
-			? Result<HostInstance>.Created(result.Value.First())
+			? Result<HostInstance>.Created(result.Value[0])
 			: Result<HostInstance>.CriticalError([.. result.Errors]);
 	}
 

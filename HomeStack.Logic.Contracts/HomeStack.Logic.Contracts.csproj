@@ -9,4 +9,12 @@
     <RootNamespace>HomeStack.Logic.Contracts</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Ardalis.Result" Version="10.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeStack.Core.Models\HomeStack.Core.Models.csproj" />
+  </ItemGroup>
+
 </Project>

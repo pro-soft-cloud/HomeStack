@@ -4,11 +4,13 @@ using HomeStack.Core.Models;
 
 namespace HomeStack.Database.EntityConfigs;
 
-internal sealed class HomeStackInstanceConfiguration : IEntityTypeConfiguration<HomeStackInstance>
+internal sealed class HostInstanceConfiguration : IEntityTypeConfiguration<HostInstance>
 {
-	public void Configure(EntityTypeBuilder<HomeStackInstance> builder)
+	public void Configure(EntityTypeBuilder<HostInstance> builder)
 	{
-		builder.HasKey(x => x.Id);
+		builder
+			.ToTable("HostInstances")
+			.HasKey(x => x.Id);
 
 		builder.Property(x => x.Id).ValueGeneratedOnAdd();
 		builder.Property(x => x.DisplayName).HasMaxLength(128).IsRequired();
@@ -20,5 +22,8 @@ internal sealed class HomeStackInstanceConfiguration : IEntityTypeConfiguration<
 		builder.Property(x => x.CreatedBy).IsRequired();
 		builder.Property(x => x.LastUpdatedAt).IsRequired(false);
 		builder.Property(x => x.LastUpdatedBy).IsRequired(false);
+
+		builder.HasIndex(i => i.SystemId).IsUnique();
+		builder.HasIndex(i => i.DisplayName).IsUnique();
 	}
 }

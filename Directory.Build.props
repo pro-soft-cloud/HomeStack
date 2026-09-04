@@ -1,0 +1,6 @@
+<!-- /Directory.Build.props -->
+<Project>
+  <PropertyGroup>
+    <SatelliteResourceLanguages>en;de</SatelliteResourceLanguages>
+  </PropertyGroup>
+</Project>

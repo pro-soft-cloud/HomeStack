@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeStack.Core.Default\HomeStack.Core.Default.csproj" />
+    <ProjectReference Include="..\HomeStack.Core\HomeStack.Core.csproj" />
   </ItemGroup>
 
 </Project>
